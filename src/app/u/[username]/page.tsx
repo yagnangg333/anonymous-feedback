@@ -98,7 +98,7 @@ export default function SendMessage() {
   return (
     <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
       <h1 className="text-4xl font-bold mb-6 text-center">
-        Public Profile Link
+        Public Profile Link of {username}
       </h1>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -135,14 +135,14 @@ export default function SendMessage() {
       </Form>
 
       <div className="space-y-4 my-8">
-        <div className="space-y-2">
-          <Button
+        <div className="flex justify-between items-center space-y-2">
+          {/* <Button
             onClick={fetchSuggestedMessages}
             className="my-4"
             disabled={isSuggestLoading}
           >
             Suggest Messages
-          </Button>
+          </Button> */}
           <p>Click on any message below to select it.</p>
         </div>
         <Card>
@@ -168,8 +168,8 @@ export default function SendMessage() {
         </Card>
       </div>
       <Separator className="my-6" />
-      <div className="text-center">
-        <div className="mb-4">Get Your Message Board</div>
+      <div className="flex justify-between text-center">
+        <div className="mb-4 font-bold">Get Your Message Board and start your anonymous Journey</div>
         <Link href={'/sign-up'}>
           <Button>Create Your Account</Button>
         </Link>
