@@ -136,20 +136,20 @@ export default function SendMessage() {
 
       <div className="space-y-4 my-8">
         <div className="flex justify-between items-center space-y-2">
-          {/* <Button
+          <Button
             onClick={fetchSuggestedMessages}
             className="my-4"
             disabled={isSuggestLoading}
           >
             Suggest Messages
-          </Button> */}
+          </Button>
           <p>Click on any message below to select it.</p>
         </div>
         <Card>
           <CardHeader>
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4">
+          <CardContent className="flex flex-col space-y-4 h-auto">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
