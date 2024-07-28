@@ -41,7 +41,7 @@ To get started with the project, follow these steps:
     MONGODB_URI = " "
     RESEND_API_KEY = " "
     NEXTAUTH_SECRET = " "
-    OPENAI_API_KEY = " "
+    HUGGINGFACE_API_KEY = " "
     ```
 
 4. Run the development server:
