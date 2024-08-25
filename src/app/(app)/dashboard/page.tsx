@@ -133,6 +133,34 @@ function UserDashboard() {
     });
   };
 
+  const shareProfileUrl = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: `${username}'s Profile`,
+          text: 'Check out this profile!',
+          url: profileUrl,
+        });
+        toast({
+          title: 'Profile is being Shared!',
+          description: 'Choose a platform to share.',
+        });
+      } catch (error) {
+        toast({
+          title: 'Error',
+          description: 'Failed to share the profile URL.',
+          variant: 'destructive',
+        });
+      }
+    } else {
+      toast({
+        title: 'Share Not Supported',
+        description: 'Web Share API is not supported in this browser.',
+        variant: 'destructive',
+      });
+    }
+  };
+
   return (
     <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
       <h1 className="text-4xl font-bold mb-4">{username}&apos;s Dashboard</h1>
@@ -147,6 +175,10 @@ function UserDashboard() {
             className="input input-bordered w-full p-2 mr-2"
           />
           <Button onClick={copyToClipboard}>Copy</Button>
+          <Button className="ml-2" onClick={shareProfileUrl}>
+            <Share2 className="h-4 w-4 mr-2" />
+            Share
+          </Button>
         </div>
       </div>
 
