@@ -5,7 +5,7 @@ export interface Message extends Document {
   createdAt: Date;
 }
 
-const MessageSchema: Schema<Message> = new mongoose.Schema({
+export const MessageSchema: Schema<Message> = new mongoose.Schema({
   content: {
     type: String,
     required: true,
@@ -26,6 +26,7 @@ export interface User extends Document {
   isVerified: boolean;
   isAcceptingMessages: boolean;
   messages: Message[];
+  role: string;
 }
 
 // Updated User schema
@@ -63,6 +64,11 @@ const UserSchema: Schema<User> = new mongoose.Schema({
     default: true,
   },
   messages: [MessageSchema],
+  role: {
+    type: String,
+    enum: ['Principal', 'Teacher', 'Student', 'Staff', 'Admin', 'User'], // Possible roles
+    required: [true, 'Role is required'],
+  },
 });
 
 const UserModel =
