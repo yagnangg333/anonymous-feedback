@@ -4,13 +4,16 @@ import { MessageSchema } from './User'; // Import the Message schema
 // Interface for Organization
 export interface Organization extends Document {
   name: string;
+  type: string; 
   email: string;
+  password: string;
   contactNumber: string;
   address: string;
   website?: string;
-  type: string; // General type of the organization
   description?: string;
   logo?: string;
+  verifyCode: string;
+  verifyCodeExpiry: Date; 
   isVerified: boolean;
   users: {
     userId: mongoose.Types.ObjectId; // Reference to the user
@@ -28,11 +31,20 @@ const OrganizationSchema: Schema<Organization> = new mongoose.Schema({
     required: [true, 'Name is required'],
     trim: true,
   },
+  type: {
+    type: String,
+    required: [true, 'Type is required'],
+    enum: ['School', 'Tech Company', 'Hospital', 'Non-Profit', 'Government', 'Corporate', 'Other'], // General types
+  },
   email: {
     type: String,
     required: [true, 'Email is required'],
     unique: true,
     match: [/.+\@.+\..+/, 'Please use a valid email address'],
+  },
+  password: {
+    type: String,
+    required: [true, 'Password is required'],
   },
   contactNumber: {
     type: String,
@@ -47,11 +59,6 @@ const OrganizationSchema: Schema<Organization> = new mongoose.Schema({
     type: String,
     match: [/^https?:\/\/.+/, 'Please use a valid URL'],
   },
-  type: {
-    type: String,
-    required: [true, 'Type is required'],
-    enum: ['School', 'Tech Company', 'Hospital', 'Non-Profit', 'Government', 'Corporate', 'Other'], // General types
-  },
   description: {
     type: String,
     trim: true,
@@ -59,6 +66,14 @@ const OrganizationSchema: Schema<Organization> = new mongoose.Schema({
   logo: {
     type: String,
     match: [/^https?:\/\/.+/, 'Please use a valid URL for the logo'],
+  },
+  verifyCode: {
+    type: String,
+    required: [true, 'Verify Code is required'],
+  },
+  verifyCodeExpiry: {
+    type: Date,
+    required: [true, 'Verify Code Expiry is required'],
   },
   isVerified: {
     type: Boolean,

@@ -66,7 +66,8 @@ const UserSchema: Schema<User> = new mongoose.Schema({
   messages: [MessageSchema],
   role: {
     type: String,
-    enum: ['Principal', 'Teacher', 'Student', 'Staff', 'Admin', 'User'], // Possible roles
+    enum: ['Principal', 'Teacher', 'Student', 'Staff', 'Admin', 'User', 'Individual'], // Possible roles
+    default: "Individual",
     required: [true, 'Role is required'],
   },
 });
