@@ -1,5 +1,21 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { MessageSchema } from './User'; // Import the Message schema
+
+export interface Message extends Document {
+  content: string;
+  createdAt: Date;
+}
+
+export const MessageSchema: Schema<Message> = new mongoose.Schema({
+  content: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    required: true,
+    default: Date.now,
+  },
+});
 
 // Interface for Organization
 export interface Organization extends Document {

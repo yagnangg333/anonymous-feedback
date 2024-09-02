@@ -1,28 +1,25 @@
-import UserModel from '@/model/User';
 import dbConnect from '@/lib/dbConnect';
-import { Message } from '@/model/User';
+import { Message } from '@/model/Organization';
+import OrganizationModel from '@/model/Organization';
 
 export async function POST(request: Request) {
   await dbConnect();
-  const { username, content } = await request.json();
+  const { orgname, content } = await request.json();
 
-  console.log(username, content)
+  // console.log(orgname , content);
+  const name = orgname;
+  // console.log(name)
 
   try {
-    const user = await UserModel.findOne({ username }).exec();
+    const user = await OrganizationModel.findOne({ name }).exec();
+
+    // console.log(user);
+    
 
     if (!user) {
       return Response.json(
         { message: 'User not found', success: false },
         { status: 404 }
-      );
-    }
-
-    // Check if the user is accepting messages
-    if (!user.isAcceptingMessages) {
-      return Response.json(
-        { message: 'User is not accepting messages', success: false },
-        { status: 403 } // 403 Forbidden status
       );
     }
 

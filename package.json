@@ -31,6 +31,8 @@
     "dayjs": "^1.11.11",
     "embla-carousel-autoplay": "^8.0.0-rc17",
     "embla-carousel-react": "^8.0.0-rc17",
+    "iron-session": "^8.0.3",
+    "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.303.0",
     "mongoose": "^8.0.3",
     "next": "14.0.4",
@@ -48,6 +50,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

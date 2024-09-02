@@ -16,7 +16,6 @@ import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/components/ui/use-toast';
-import { signInSchema } from '@/schemas/signInSchema';  // Adjust this to handle organization sign-in
 
 // Define or import a schema for organization sign-in
 const orgSignInSchema = z.object({

@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getToken } from 'next-auth/jwt';
 export { default } from 'next-auth/middleware';
 
+
 export const config = {
-  matcher: ['/dashboard/:path*', '/sign-in', '/sign-up', '/', '/verify/:path*'],
+  matcher: ['/dashboard/:path*', '/sign-in', '/sign-up', '/', '/verify/:path*,/org-dashboard/:path*', '/org-sign-in', '/org-sign-up', '/org-verify/:path*'],
 };
 
 export async function middleware(request: NextRequest) {
@@ -22,9 +23,25 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/dashboard', request.url));
   }
 
+  if (
+    token &&
+    (
+      url.pathname.startsWith('/org-sign-in') ||
+      url.pathname.startsWith('/prg-sign-up') ||
+      url.pathname.startsWith('/org-verify') ||
+      url.pathname === '/')
+  ) {
+    return NextResponse.redirect(new URL('/org-dashboard', request.url));
+  }
+
   if (!token && url.pathname.startsWith('/dashboard')) {
     return NextResponse.redirect(new URL('/sign-in', request.url));
   }
 
+  if (!token && url.pathname.startsWith('/org-dashboard')) {
+    return NextResponse.redirect(new URL('/org-sign-in', request.url));
+  }
+  
   return NextResponse.next();
 }
+
