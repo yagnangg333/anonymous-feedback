@@ -112,13 +112,13 @@ export default function SignUpForm() {
     };
 
     return (
-        <div className="flex justify-center items-center min-h-screen bg-gray-800">
-            <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+        <div className="flex justify-center items-center min-h-screen bg-gradient-to-b from-gray-800 via-gray-900 to-black text-white">
+            <div className="w-full max-w-md p-8 space-y-8 bg-gray-900 rounded-lg shadow-md">
                 <div className="text-center">
-                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6">
+                    <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl mb-6 text-transparent bg-clip-text bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500">
                         Join Anonymous Feedback
                     </h1>
-                    <p className="mb-4">Sign up to start your anonymous adventure</p>
+                    <p className="mb-4 text-gray-300">Sign up to start your anonymous adventure</p>
                 </div>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
@@ -127,14 +127,8 @@ export default function SignUpForm() {
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Organization Name</FormLabel>
-                                    <Input
-                                        {...field}
-                                        onChange={(e) => {
-                                            field.onChange(e);
-                                            setOrgName(e.target.value);
-                                        }}
-                                    />
+                                    <FormLabel className="text-gray-300">Organization Name</FormLabel>
+                                    <Input {...field} className="bg-gray-800 text-white" />
                                     {isCheckingUsername && <Loader2 className="animate-spin" />}
                                     {!isCheckingUsername && usernameMessage && (
                                         <p
@@ -150,22 +144,22 @@ export default function SignUpForm() {
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="orgType"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Select Type of Your Organization</FormLabel>
+                                    <FormLabel className="text-gray-300">Select Type of Your Organization</FormLabel>
                                     <Select onValueChange={field.onChange} value={field.value}>
-                                        <SelectTrigger className="w-full">
+                                        <SelectTrigger className="w-full bg-gray-800 text-white">
                                             <SelectValue placeholder="Select an Organization" />
                                         </SelectTrigger>
-                                        <SelectContent>
+                                        <SelectContent className="bg-gray-900">
                                             <SelectGroup>
-                                                <SelectLabel>Organization</SelectLabel>
+                                                <SelectLabel className="text-gray-300">Organization</SelectLabel>
                                                 {organizationTypes.map((type) => (
-                                                    <SelectItem key={type} value={type}>
+                                                    <SelectItem key={type} value={type} className="text-gray-300">
                                                         {type}
                                                     </SelectItem>
                                                 ))}
@@ -175,68 +169,68 @@ export default function SignUpForm() {
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="email"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Organization's Email</FormLabel>
-                                    <Input {...field} name="email" />
-                                    <p className='text-muted text-gray-400 text-sm'>We will send you a verification code</p>
+                                    <FormLabel className="text-gray-300">Organization's Email</FormLabel>
+                                    <Input {...field} className="bg-gray-800 text-white" />
+                                    <p className='text-gray-400 text-sm'>We will send you a verification code</p>
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="contactNumber"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Contact Number</FormLabel>
-                                    <Input {...field} name="contactNumber" />
+                                    <FormLabel className="text-gray-300">Contact Number</FormLabel>
+                                    <Input {...field} className="bg-gray-800 text-white" />
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="address"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Address</FormLabel>
-                                    <Input {...field} name="address" />
+                                    <FormLabel className="text-gray-300">Address</FormLabel>
+                                    <Input {...field} className="bg-gray-800 text-white" />
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="website"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Website (Optional)</FormLabel>
-                                    <Input {...field} name="website" />
+                                    <FormLabel className="text-gray-300">Website (Optional)</FormLabel>
+                                    <Input {...field} className="bg-gray-800 text-white" />
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-
+    
                         <FormField
                             name="password"
                             control={form.control}
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel>Password</FormLabel>
-                                    <Input type="password" {...field} name="password" />
+                                    <FormLabel className="text-gray-300">Password</FormLabel>
+                                    <Input type="password" {...field} className="bg-gray-800 text-white" />
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                        <Button type="submit" className='w-full' disabled={isSubmitting}>
+                        <Button type="submit" className='w-full p-6 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-full hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-all' disabled={isSubmitting}>
                             {isSubmitting ? (
                                 <>
                                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
@@ -249,9 +243,9 @@ export default function SignUpForm() {
                     </form>
                 </Form>
                 <div className="text-center mt-4">
-                    <p>
+                    <p className="text-gray-300">
                         Already a member?{' '}
-                        <Link href="/org-sign-in" className="text-blue-600 hover:text-blue-800">
+                        <Link href="/org-sign-in" className="text-blue-400 hover:text-blue-600">
                             Sign in
                         </Link>
                     </p>
@@ -259,7 +253,4 @@ export default function SignUpForm() {
             </div>
         </div>
     );
-}
-
-
-
+}    

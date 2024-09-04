@@ -78,7 +78,7 @@ export default function SendMessage() {
       toast({
         title: 'Error',
         description:
-          axiosError.response?.data.message ?? 'Failed to sent message',
+          axiosError.response?.data.message ?? 'Failed to send message',
         variant: 'destructive',
       });
     } finally {
@@ -96,8 +96,8 @@ export default function SendMessage() {
   };
 
   return (
-    <div className="container mx-auto my-8 p-6 bg-white rounded max-w-4xl">
-      <h1 className="text-4xl font-bold mb-6 text-center">
+    <div className="container mx-auto my-8 p-6 bg-white rounded-lg shadow-2xl max-w-4xl">
+      <h1 className="text-4xl font-bold mb-6 text-center text-gray-900">
         Public Profile Link of {username}
       </h1>
       <Form {...form}>
@@ -107,11 +107,11 @@ export default function SendMessage() {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Send Anonymous Message to @{username}</FormLabel>
+                <FormLabel className="text-gray-800">Send Anonymous Message to @{username}</FormLabel>
                 <FormControl>
                   <Textarea
                     placeholder="Write your anonymous message here"
-                    className="resize-none"
+                    className="resize-none bg-gray-100 text-gray-900 border border-gray-400 w-full"
                     {...field}
                   />
                 </FormControl>
@@ -121,12 +121,17 @@ export default function SendMessage() {
           />
           <div className="flex justify-center">
             {isLoading ? (
-              <Button disabled>
+              <Button disabled className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-6 py-3">
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
             ) : (
-              <Button type="submit" disabled={isLoading || !messageContent}>
+              <Button
+                type="submit"
+                disabled={isLoading || !messageContent}
+                className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-6 py-3
+                hover:bg-gradient-to-r hover:from-teal-500 hover:via-indigo-600 hover:to-purple-500 transition-colors duration-300"
+              >
                 Send It
               </Button>
             )}
@@ -138,18 +143,18 @@ export default function SendMessage() {
         <div className="flex justify-between items-center space-y-2">
           <Button
             onClick={fetchSuggestedMessages}
-            className="my-4"
+            className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-6 py-3 hover:bg-gradient-to-r hover:from-teal-500 hover:via-indigo-600 hover:to-purple-500 transition-colors duration-300"
             disabled={isSuggestLoading}
           >
             Suggest Messages
           </Button>
-          <p>Click on any message below to select it.</p>
+          <p className="text-gray-800">Click on any message below to select it.</p>
         </div>
-        <Card>
-          <CardHeader>
+        <Card className="bg-gray-50 border border-gray-200 rounded-lg">
+          <CardHeader className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-t-lg">
             <h3 className="text-xl font-semibold">Messages</h3>
           </CardHeader>
-          <CardContent className="flex flex-col space-y-4 h-auto">
+          <CardContent className="flex flex-col space-y-4 p-4">
             {error ? (
               <p className="text-red-500">{error.message}</p>
             ) : (
@@ -157,7 +162,7 @@ export default function SendMessage() {
                 <Button
                   key={index}
                   variant="outline"
-                  className="mb-2"
+                  className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-6 py-3 mb-2 hover:bg-gradient-to-r hover:from-teal-500 hover:via-indigo-600 hover:to-purple-500 transition-colors duration-300"
                   onClick={() => handleMessageClick(message)}
                 >
                   {message}
@@ -167,11 +172,15 @@ export default function SendMessage() {
           </CardContent>
         </Card>
       </div>
-      <Separator className="my-6" />
+      <Separator className="my-6 border-gray-200" />
       <div className="flex justify-between text-center">
-        <div className="mb-4 font-bold">Get Your Message Board and start your anonymous Journey</div>
+        <div className="mb-4 font-bold text-gray-900">
+          Get Your Message Board and start your anonymous Journey
+        </div>
         <Link href={'/sign-up'}>
-          <Button>Create Your Account</Button>
+          <Button className="bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-6 py-3 hover:bg-gradient-to-r hover:from-teal-500 hover:via-indigo-600 hover:to-purple-500 transition-colors duration-300">
+            Create Your Account
+          </Button>
         </Link>
       </div>
     </div>

@@ -143,30 +143,40 @@ function UserDashboard() {
   };
 
   return (
-    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-white rounded w-full max-w-6xl">
-      <h1 className="text-4xl font-bold mb-4">{username}&apos;s Dashboard</h1>
+    <div className="my-8 mx-4 md:mx-8 lg:mx-auto p-6 bg-gray-100 rounded-lg shadow-lg w-full max-w-6xl">
+      <h1 className="text-3xl font-extrabold text-gray-800 mb-4 text-center">
+        {username}&apos;s Dashboard
+      </h1>
 
-      <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">Copy Your Unique Link</h2>{' '}
-        <div className="flex items-center">
+      <div className="mb-6 p-4 bg-white rounded-lg shadow-sm">
+        <h2 className="text-xl font-semibold mb-2">Copy Your Unique Link</h2>
+        <div className="flex items-center mb-2">
           <input
             type="text"
             value={profileUrl}
             disabled
-            className="input input-bordered w-full p-2 mr-2"
+            className="input input-bordered w-full p-2 bg-gray-200 text-gray-700 border-gray-300 rounded-lg"
           />
-          <Button onClick={copyToClipboard}>Copy</Button>
-          <Button className="ml-2" onClick={shareProfileUrl}>
+          <Button
+            onClick={copyToClipboard}
+            className="ml-2 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-4 py-2 hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-colors duration-300"
+          >
+            Copy
+          </Button>
+          <Button
+            onClick={shareProfileUrl}
+            className="ml-2 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-4 py-2 hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-colors duration-300"
+          >
             <Share2 className="h-4 w-4 mr-2" />
             Share
           </Button>
         </div>
       </div>
 
-      <Separator />
+      <Separator className="my-6" />
 
       <Button
-        className="mt-4"
+        className="mt-4 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-lg px-4 py-2 hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-colors duration-300"
         variant="outline"
         onClick={(e) => {
           e.preventDefault();
@@ -179,9 +189,9 @@ function UserDashboard() {
           <RefreshCcw className="h-4 w-4" />
         )}
       </Button>
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-2">
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
         {messages.length > 0 ? (
-          messages.map((message, index) => (
+          messages.map((message) => (
             <OrgMessageCard
               key={message._id}
               message={message}
@@ -189,7 +199,7 @@ function UserDashboard() {
             />
           ))
         ) : (
-          <p>No messages to display.</p>
+          <p className="text-center text-gray-600">No messages to display.</p>
         )}
       </div>
     </div>
