@@ -20,7 +20,7 @@ import { verifySchema } from '@/schemas/verifySchema';
 
 export default function VerifyAccount() {
   const router = useRouter();
-  const params = useParams<{ username: string }>();
+  const params = useParams<{ orgname: string }>();
   const { toast } = useToast();
   const form = useForm<z.infer<typeof verifySchema>>({
     resolver: zodResolver(verifySchema),
@@ -28,8 +28,8 @@ export default function VerifyAccount() {
 
   const onSubmit = async (data: z.infer<typeof verifySchema>) => {
     try {
-      const response = await axios.post<ApiResponse>(`/api/verify-code`, {
-        username: params.username,
+      const response = await axios.post<ApiResponse>(`/api/org-verify-code`, {
+        orgname: params.orgname,
         code: data.code,
       });
 
@@ -38,7 +38,7 @@ export default function VerifyAccount() {
         description: response.data.message,
       });
 
-      router.replace('/sign-in');
+      router.replace('/org-sign-in');
     } catch (error) {
       const axiosError = error as AxiosError<ApiResponse>;
       toast({
@@ -73,10 +73,7 @@ export default function VerifyAccount() {
                             </FormItem>
                         )}
                     />
-                    <Button
-                        type="submit"
-                        className="w-full p-6 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-full hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-all"
-                    >
+                    <Button type="submit" className='w-full p-6 bg-gradient-to-r from-teal-400 via-indigo-500 to-purple-500 text-white rounded-full hover:from-teal-500 hover:via-indigo-600 hover:to-purple-600 transition-all'>
                         Verify
                     </Button>
                 </form>
